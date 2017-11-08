@@ -47,6 +47,9 @@ public:
 
 	double speed_eval(bool w_key, bool s_key, double update_interval);
 	double heading_eval(bool a_key, bool d_key, double update_interval);
+	void update_missiles(double time);
+	void draw_missiles();
+	void setup();
 };
 
 class Missile
@@ -58,11 +61,14 @@ public:
 	double speed = 0;
 	double missile_integrator = 0;
 	const double speed_fac = 1;
+	double delay_timestamp = 0;
 
 	Missile(string missile_data_path, string name_base, string name_suffix);
 	~Missile();
 
-	double speed_eval();
+	void update(double time);
+	void draw();
+	double speed_eval(double time);
 };
 
 class Missile_Sprite
