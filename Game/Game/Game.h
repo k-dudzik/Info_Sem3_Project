@@ -2,6 +2,7 @@
 
 #include "Gosu/Gosu.hpp"
 #include "Gosu/AutoLink.hpp"
+#include <vector>
 
 using namespace std;
 using namespace Gosu;
@@ -11,6 +12,8 @@ class Drone;
 class Missile;
 class Missile_Sprite;
 class GameWindow;
+class Objective;
+class Objective_Handler;
 
 class Background
 {
@@ -47,6 +50,9 @@ public:
 
 	double speed_eval(bool w_key, bool s_key, double update_interval);
 	double heading_eval(bool a_key, bool d_key, double update_interval);
+	void update_missiles(double time);
+	void draw_missiles();
+	void setup();
 };
 
 class Missile
@@ -58,11 +64,14 @@ public:
 	double speed = 0;
 	double missile_integrator = 0;
 	const double speed_fac = 1;
+	double delay_timestamp = 0;
 
 	Missile(string missile_data_path, string name_base, string name_suffix);
 	~Missile();
 
-	double speed_eval();
+	void update(double time);
+	void draw();
+	double speed_eval(double time);
 };
 
 class Missile_Sprite
@@ -81,6 +90,7 @@ public:
 class GameWindow : public Window
 {
 public:
+	Objective_Handler *obj_handler;
 	Background *background;
 	Drone *drone;
 	TCHAR szFolderPath[MAX_PATH];
@@ -105,4 +115,38 @@ public:
 	void button_up(Button button) override;
 
 	void input_eval();
+};
+
+class Objective
+{
+public:
+	double x_pos = 0; //x Position auf Bild der Karte
+	double y_pos = 0; //y Position auf Bild der Karte
+	bool active = FALSE;
+	bool cleared = FALSE;
+	string title = "";
+	string mission = "";
+
+	Objective(double x, double y, string t, string m);
+	~Objective();
+
+	void draw();
+	bool update();
+	bool destroy();
+
+	bool operator== (const Objective& o1);
+};
+
+class Objective_Handler
+{
+public:
+	Objective_Handler();
+
+	vector<Objective> objective_list;
+	Objective selected_objective; //Erstes Objective muss beim Start erstellt und ausgewählt werden!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	void select_new_objective();
+	void add_objective(double x, double y, string t, string m);
+	void update();
+	void draw();
 };
