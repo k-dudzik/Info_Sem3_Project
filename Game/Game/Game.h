@@ -90,7 +90,7 @@ public:
 class GameWindow : public Window
 {
 public:
-	Objective_Handler obj_handler;
+	Objective_Handler *obj_handler;
 	Background *background;
 	Drone *drone;
 	TCHAR szFolderPath[MAX_PATH];
@@ -140,6 +140,8 @@ public:
 class Objective_Handler
 {
 public:
+	Objective_Handler();
+
 	vector<Objective> objective_list;
 	Objective selected_objective; //Erstes Objective muss beim Start erstellt und ausgewählt werden!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
