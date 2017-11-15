@@ -21,6 +21,7 @@ public:
 	Image *bg_image;
 	double y_pos, x_pos;
 	double scale = 1;
+	uint8_t z_pos = 1;
 
 	Background(string bg_data_path);
 	~Background();
@@ -44,6 +45,7 @@ public:
 	double heading_integrator = 0;
 	double rot_speed = 0;
 	double scale = 1;
+	uint8_t z_pos = 10;
 
 	Drone(string drone_data_path, string name_base, uint8_t w, uint16_t n, uint8_t v, string missile_data_path, string missile_name_base, string sprite_data_path);
 	~Drone();
@@ -61,6 +63,7 @@ public:
 	Image *missile_image = NULL;
 	bool missile_launch = FALSE;
 	double y_pos, x_pos;
+	uint8_t z_pos = 4;
 	double speed = 0;
 	double missile_integrator = 0;
 	const double speed_fac = 1;
@@ -95,6 +98,7 @@ public:
 	Drone *drone;
 	TCHAR szFolderPath[MAX_PATH];
 	double t;
+	uint8_t mode = 0;
 
 	//Input (evtl in eigene Klasse)
 	bool w_key;
