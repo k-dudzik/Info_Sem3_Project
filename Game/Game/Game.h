@@ -20,6 +20,10 @@ class Background
 public:
 	Image *bg_image;
 	Image *cam_image;
+	Bitmap *objective0;
+	Image *obj_image;
+
+	double obj_x_pos, obj_y_pos;
 	double y_pos, x_pos;
 	double scale;
 	uint8_t z_pos;
@@ -101,10 +105,12 @@ public:
 	Background *background;
 	Drone *drone = NULL;
 	Song *drone_hum = NULL;
+	Image *cursor = NULL;
 	TCHAR szFolderPath[MAX_PATH];
 	double t;
 	uint8_t mode;
 	uint32_t tick;
+	double corner_x, corner_y;
 
 	//Input (evtl in eigene Klasse)
 	bool w_key;
