@@ -24,6 +24,9 @@
     <ClInclude Include="Game.h">
       <Filter>Quelldateien</Filter>
     </ClInclude>
+    <ClInclude Include="drone.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
