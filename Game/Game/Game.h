@@ -110,7 +110,7 @@ public:
 	double t;
 	uint8_t mode;
 	uint32_t tick;
-	double corner_x, corner_y;
+	double corner_x = 0, corner_y = 0;
 
 	//Input (evtl in eigene Klasse)
 	bool w_key;
