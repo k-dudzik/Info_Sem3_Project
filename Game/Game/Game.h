@@ -7,6 +7,7 @@ using namespace std;
 using namespace Gosu;
 
 class Background;
+class Clouds;
 class Drone;
 class Missile;
 class Missile_Sprite;
@@ -18,10 +19,23 @@ public:
 	Image *bg_image;
 	double y_pos, x_pos;
 	double scale = 1;
-
-	Background(string bg_data_path);
+	double clouds_map_ratio;
+	Clouds *clouds;
+	Background(string bg_data_path, string cloud_data_path);
 	~Background();
 };
+
+class Clouds
+{
+public:
+	Image *cloud_image;
+	double y_pos, x_pos;
+	double scale = 1;
+
+	Clouds(string cloud_data_path);
+	~Clouds();
+};
+
 
 class Drone
 {
